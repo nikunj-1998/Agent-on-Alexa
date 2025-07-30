@@ -11,7 +11,7 @@ This repo sets up a FastAPI server hosting a Gemini-powered agent that can:
 - Answer general queries using **Google Search**
 - **Place phone calls** via **Vapi.ai** using your **Twilio** number
 
-✅ **This is Step 1** of a two-part system. Step 2 (Alexa skill integration via Lambda) will be added in the next iteration.
+✅ **This is Step 1** of a two-part system. This pertains to "Agent API.py" file. Step 2 (Alexa skill integration via Lambda) will be added in the next iteration.
 
 ---
 
@@ -47,7 +47,8 @@ instruction="You are a helpful assistant that uses web search to answer user que
 - Add your Twilio number to the platform
 - Create any agent (a basic default is fine)
 - Go to **API > Generate Snippet**
-- Copy the JSON payload and adapt it (as shown in `call_person` function)
+- Add your phone numbers api id and numbers you want to call to, its very intuitive
+- Copy the python payload and adapt it (as shown in `call_person` function)
 - Replace your phone number and auth fields with `os.getenv(...)` for security
 
 ---
