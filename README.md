@@ -11,8 +11,7 @@ This repo sets up a FastAPI server hosting a Gemini-powered agent that can:
 - Answer general queries using **Google Search**
 - **Place phone calls** via **Vapi.ai** using your **Twilio** number
 
-✅ **This is Step 1** of a two-part system. This pertains to "Agent API.py" file. Step 2 (Alexa skill integration via Lambda) will be added in the next iteration.
-
+✅ **This is Step 1** of a two-part system. This pertains to "Agent API.py" file
 ---
 
 ## 🧭 Step-by-Step Setup
@@ -46,8 +45,8 @@ instruction="You are a helpful assistant that uses web search to answer user que
 - [vapi.ai](https://vapi.ai)
 - Add your Twilio number to the platform
 - Create any agent (a basic default is fine)
-- Go to **API > Generate Snippet**
-- Add your phone numbers api id and numbers you want to call to, its very intuitive
+- Go to **API > Try**
+- Add your phone numbers, api key, and numbers you want to call to, its very intuitive
 - Copy the python payload and adapt it (as shown in `call_person` function)
 - Replace your phone number and auth fields with `os.getenv(...)` for security
 
@@ -75,7 +74,7 @@ Agent(
 
 1. Launch a **Ubuntu EC2 instance** on AWS (recommended).
 2. In **Security Groups**, allow inbound traffic on port `8000`.
-3. SSH into the instance and:
+3. Upload your files and SSH into the instance:
    ```bash
    git clone <this-repo-url>
    cd <repo-folder>
@@ -104,8 +103,8 @@ VAPI_TOKEN=your_vapi_api_key
 TWILIO_SID=your_twilio_sid
 TWILIO_AUTH=your_twilio_auth
 TWILIO_NUMBER=+1XXXXXXXXXX
-NIKUNJ_PHONE=+91XXXXXXXXXX
-VIDHI_PHONE=+91XXXXXXXXXX
+NIKUNJ_PHONE=+91XXXXXXXXXX #verify on twilio first
+VIDHI_PHONE=+91XXXXXXXXXX #verify on twilio first
 ```
 
 ---
@@ -124,6 +123,7 @@ This guide builds on **Step 1**, where your agentic Gemini FastAPI server is alr
    ```
    Endpoint → Service Endpoint Type → AWS Lambda ARN → Default Region
    ```
+<img width="1084" height="930" alt="image" src="https://github.com/user-attachments/assets/9c0f3350-ec8b-4e66-aa8d-26e4a42207ba" />
 
 📸 _As shown in the screenshots above, you can copy the ARN and paste it in all optional fields for safety._
 
@@ -147,11 +147,15 @@ requests_layer.zip
 ```
 
 🧩 To add them:
+<img width="395" height="436" alt="image" src="https://github.com/user-attachments/assets/d8f9f8ab-0550-4f7e-8782-d356a303a961" />
+
 1. Go to the **Layers** tab under your Lambda function.
 2. Click **Add a layer > Create a new layer**
-3. Upload each zip, give it a name (e.g., `ask-core-layer`)
+3. Upload each zip, one for each layer give it a name (e.g., `ask-core-layer`)
 4. Choose Python runtime: `Python 3.11`
-5. Attach all layers to your Lambda function.
+5. Attach all layers to your Lambda function by again choosing add a layer and custom layer.
+<img width="1467" height="819" alt="image" src="https://github.com/user-attachments/assets/c5774b7b-0224-4c1b-8aab-37a5d66536b4" />
+
 
 _💡 We used Python 3.11 to match local development and Lambda runtime (you can set it via CLI if needed)._
 
